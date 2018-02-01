@@ -26,8 +26,8 @@ namespace SMTP.Service.Model.CustomAttributes
         public override bool IsValid(object value)
         {
             var emailAddressList = value as List<string>;
-            if (emailAddressList != null) return false;
-
+            if (emailAddressList == null) return true;
+            if (emailAddressList.Count == 0) return true;
             //lets test for mulitple email addresses
             
              return emailAddressList.All(t => _emailAddressAttribute.IsValid(t));
