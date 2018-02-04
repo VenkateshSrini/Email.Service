@@ -12,13 +12,17 @@ namespace SMTP.Service.Model
         [Required(AllowEmptyStrings =false,ErrorMessage ="From Address cannot be empty")]
         [EmailAddress(ErrorMessage ="Invalid from address email")]
         public string FromAddress { get; set; }
+
         [Required(AllowEmptyStrings = false, ErrorMessage = "To Address cannot be empty")]
         [IsListOfEmailAddress(ErrorMessage ="One or some of the email provided in the To address list is invalid")]
         public List<string> ToAddress { get; set; }
+
         [IsListOfEmailAddress(ErrorMessage = "One or some of the email provided in the To address list is invalid")]
         public List<string> Bcc { get; set; }
+
         [IsListOfEmailAddress(ErrorMessage = "One or some of the email provided in the To address list is invalid")]
         public List<string> Cc { get; set; }
+
         [Required(AllowEmptyStrings = false, ErrorMessage = "Subject cannot be empty")]
         public string Subject { get; set; }
 
