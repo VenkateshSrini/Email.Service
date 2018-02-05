@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using SMTP.Service.Configuration;
+using SMTP.Service.SMTPLibrary;
 using Steeltoe.Extensions.Configuration;
 using Steeltoe.Extensions.Configuration.CloudFoundry;
 namespace SMTP.Service
@@ -26,6 +28,8 @@ namespace SMTP.Service
         {
             services.AddMvc();
             services.ConfigureCloudFoundryOptions(Configuration);
+            services.AddSingleton<ISmtpLibrary, SmtpLibrary>();
+            services.Configure<SMTPServiceConfiguration>(Configuration.GetSection("SMTPServiceConfiguration"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
