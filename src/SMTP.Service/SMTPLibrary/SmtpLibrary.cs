@@ -16,7 +16,8 @@ namespace SMTP.Service.SMTPLibrary
             {
                 if (serverPort > 0)
                     smtpClient.Port = serverPort;
-                smtpClient.Credentials = new NetworkCredential(smtpUserName, smtpPassword);
+                if(!string.IsNullOrWhiteSpace(smtpUserName) && (!string.IsNullOrWhiteSpace(smtpPassword)))
+                    smtpClient.Credentials = new NetworkCredential(smtpUserName, smtpPassword);
                 smtpClient.Send(getMailMessageFromMailModel(mailModel));
             }
 
