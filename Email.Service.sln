@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMTP.Service", "src\SMTP.Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMTP.Service.Test", "test\SMTP.Service.Test\SMTP.Service.Test.csproj", "{1D1DA16B-EE7B-4D06-83EF-764D1188341B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMTP.Service.Integration.Test", "test\SMTP.Service.Integration.Test\SMTP.Service.Integration.Test.csproj", "{8FFFC3A6-0052-4F6C-8C79-E959B9309A94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMTP.Service.Integration.Test", "test\SMTP.Service.Integration.Test\SMTP.Service.Integration.Test.csproj", "{8FFFC3A6-0052-4F6C-8C79-E959B9309A94}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A1AE6AC3-9459-48DB-BB5D-3A8BBC8A43EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{8FFFC3A6-0052-4F6C-8C79-E959B9309A94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FFFC3A6-0052-4F6C-8C79-E959B9309A94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FFFC3A6-0052-4F6C-8C79-E959B9309A94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1AE6AC3-9459-48DB-BB5D-3A8BBC8A43EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1AE6AC3-9459-48DB-BB5D-3A8BBC8A43EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1AE6AC3-9459-48DB-BB5D-3A8BBC8A43EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1AE6AC3-9459-48DB-BB5D-3A8BBC8A43EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -43,7 +43,8 @@ namespace SMTP.Service.SMTPLibrary
                 BodyEncoding = System.Text.Encoding.UTF8,
                 IsBodyHtml = true,
                 DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure,
-                Priority = MailPriority.Normal
+                Priority = MailPriority.Normal,
+                Body = mailModel.Body
             };
             foreach (string mailAddress in mailModel.ToAddress)
                 mailMessage.To.Add(mailAddress);

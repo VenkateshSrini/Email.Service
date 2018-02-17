@@ -23,6 +23,11 @@ namespace SMTP.Service.Model
         public string Subject { get; set; }
 
         public string  Body { get; set; }
-        
+        public MailModel()
+        {
+            Bcc = new List<string>();
+            Cc = new List<string>();
+        }
+
     }
 }

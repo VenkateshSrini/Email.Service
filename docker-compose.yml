@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  smtp.service:
+    image: venkateshsrini3/smtp.service
+    build:
+      context: .
+      dockerfile: src/SMTP.Service/Dockerfile
+    ports:
+      - 5000:80
+      - 25:25

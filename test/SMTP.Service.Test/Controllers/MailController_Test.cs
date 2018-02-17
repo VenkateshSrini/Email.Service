@@ -49,7 +49,7 @@ namespace SMTP.Service.Test.Controllers
             return configurationBuilder.Build();
         }
         [Fact]
-        public async void PostInvalid_Test()
+        public  void PostInvalid_Test()
         {
             MailController mailController = new MailController(mockSMPTPLib.Object, loggerFactory,
                 smptOptions, cfOptions);
@@ -63,7 +63,7 @@ namespace SMTP.Service.Test.Controllers
             };
             mailController.ModelState.AddModelError("From", "Invalid from address email");
             
-            var actionResult = (await mailController.Post(mailModel)) as BadRequestObjectResult;
+            var actionResult = (mailController.Post(mailModel)) as BadRequestObjectResult;
             Assert.NotNull(actionResult);
             Assert.NotNull(actionResult.Value);
             var apiResponse = actionResult.Value as APIResponse;
@@ -72,7 +72,7 @@ namespace SMTP.Service.Test.Controllers
             
         }
         [Fact]
-        public async void PostValid_Test()
+        public  void PostValid_Test()
         {
             MailController mailController = new MailController(mockSMPTPLib.Object, loggerFactory,
                 smptOptions, cfOptions);
@@ -86,7 +86,7 @@ namespace SMTP.Service.Test.Controllers
             };
             
 
-            var actionResult = (await mailController.Post(mailModel)) as OkObjectResult;
+            var actionResult = (mailController.Post(mailModel)) as OkObjectResult;
             Assert.NotNull(actionResult);
             Assert.NotNull(actionResult.Value);
             var apiResponse = actionResult.Value as APIResponse;

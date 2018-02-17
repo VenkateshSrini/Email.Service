@@ -56,7 +56,7 @@ namespace SMTP.Service.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]MailModel mailModel)
+        public IActionResult Post([FromBody]MailModel mailModel)
         {
             string corelationID = Guid.NewGuid().ToString();
             if (ModelState.IsValid)
@@ -64,7 +64,7 @@ namespace SMTP.Service.Controllers
                 try
                 {
                     logger.LogTrace($"corelation ID :{corelationID} model is valid. About to send email");
-                    await smtpLibrary.SendAsync(mailModel, smtpHost, smtpUser, smtpPassword, smtpPort);
+                    smtpLibrary.Send(mailModel, smtpHost, smtpUser, smtpPassword, smtpPort);
                     logger.LogTrace($"corelation ID :{corelationID} Email sent successfully");
                     return Ok(new APIResponse {
                         CorelationID = corelationID,
