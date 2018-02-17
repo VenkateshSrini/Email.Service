@@ -17,11 +17,11 @@ namespace SMTP.Service.Integration.Test.Controllers
             httpClient = testServer.CreateClient();
         }
         [Fact]
-        public async void TestPost()
+        public async void TestPost_HappyPath()
         {
             MailModel mailModel = new MailModel
             {
-                FromAddress="svenkatesh_in@yahoo.com",
+                FromAddress="svenkatesh_in@abc",
                 ToAddress = new List<string>
                 {
                     "venkateshsrini3@gmail.com",
@@ -38,6 +38,27 @@ namespace SMTP.Service.Integration.Test.Controllers
                                  );
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
+        [Fact]
+        public async void TestPost_UnHappyPath()
+        {
+            MailModel mailModel = new MailModel
+            {
+                FromAddress = "svenkatesh_in",
+                ToAddress = new List<string>
+                {
+                    "venkateshsrini3@gmail.com",
+                    "heman_1978@hotmail.com"
+                },
+                Subject = "Hi there",
+                Body = "<html><head>issue</head></html>"
+            };
 
+            var response = await httpClient.PostAsync("/api/Mail", new StringContent(JsonConvert.SerializeObject(mailModel),
+                                                                System.Text.Encoding.UTF8,
+                                                                "application/json"
+                                                                )
+                                 );
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
     }
 }

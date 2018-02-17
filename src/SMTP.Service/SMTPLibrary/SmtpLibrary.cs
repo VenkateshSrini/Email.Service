@@ -18,7 +18,14 @@ namespace SMTP.Service.SMTPLibrary
                     smtpClient.Port = serverPort;
                 if(!string.IsNullOrWhiteSpace(smtpUserName) && (!string.IsNullOrWhiteSpace(smtpPassword)))
                     smtpClient.Credentials = new NetworkCredential(smtpUserName, smtpPassword);
-                smtpClient.Send(getMailMessageFromMailModel(mailModel));
+                try
+                {
+                    smtpClient.Send(getMailMessageFromMailModel(mailModel));
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
 
 
@@ -31,7 +38,15 @@ namespace SMTP.Service.SMTPLibrary
                 if (serverPort > 0)
                     smtpClient.Port = serverPort;
                 smtpClient.Credentials = new NetworkCredential(smtpUserName, smtpPassword);
-                return smtpClient.SendMailAsync(getMailMessageFromMailModel(mailModel));
+                try
+                {
+                    return smtpClient.SendMailAsync(getMailMessageFromMailModel(mailModel));
+                }
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
+                
             }
         }
         private MailMessage getMailMessageFromMailModel(MailModel mailModel)
@@ -48,6 +63,7 @@ namespace SMTP.Service.SMTPLibrary
             };
             foreach (string mailAddress in mailModel.ToAddress)
                 mailMessage.To.Add(mailAddress);
+            
             foreach(string mailAddress in mailModel.Cc)
                 mailMessage.CC.Add(mailAddress);
             foreach (string mailAddress in mailModel.Bcc)
