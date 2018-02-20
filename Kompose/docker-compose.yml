@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  smtpservice:
+    image: venkateshsrini3/smtp.service:latest
+    build:
+      context: .
+    ports:
+      - 80:80
+      - 25:25
+    labels:
+      kompose.service.type: LoadBalancer

@@ -63,7 +63,7 @@ namespace SMTP.Service.Test.Controllers
             };
             mailController.ModelState.AddModelError("From", "Invalid from address email");
             
-            var actionResult = ( mailController.Post(mailModel)) as BadRequestObjectResult;
+            var actionResult = (mailController.Post(mailModel)) as BadRequestObjectResult;
             Assert.NotNull(actionResult);
             Assert.NotNull(actionResult.Value);
             var apiResponse = actionResult.Value as APIResponse;
@@ -86,7 +86,7 @@ namespace SMTP.Service.Test.Controllers
             };
             
 
-            var actionResult = ( mailController.Post(mailModel)) as OkObjectResult;
+            var actionResult = (mailController.Post(mailModel)) as OkObjectResult;
             Assert.NotNull(actionResult);
             Assert.NotNull(actionResult.Value);
             var apiResponse = actionResult.Value as APIResponse;

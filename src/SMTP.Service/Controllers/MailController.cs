@@ -56,7 +56,7 @@ namespace SMTP.Service.Controllers
 
 
         [HttpPost]
-        public  IActionResult Post([FromBody]MailModel mailModel)
+        public IActionResult Post([FromBody]MailModel mailModel)
         {
             string corelationID = Guid.NewGuid().ToString();
             if (ModelState.IsValid)
@@ -64,16 +64,15 @@ namespace SMTP.Service.Controllers
                 try
                 {
                     logger.LogTrace($"corelation ID :{corelationID} model is valid. About to send email");
-                     smtpLibrary.Send(mailModel, smtpHost, smtpUser, smtpPassword, smtpPort);
+                    smtpLibrary.Send(mailModel, smtpHost, smtpUser, smtpPassword, smtpPort);
                     logger.LogTrace($"corelation ID :{corelationID} Email sent successfully");
-                    
                     return Ok(new APIResponse {
                         CorelationID = corelationID,
                         Status = "Mail sent sucessfully",
                         StatusCode = HttpStatusCode.OK
                     });
                 }
-                catch (Exception ex)
+                catch (AggregateException ex)
                 {
                     logger.LogError($"corelation id : {corelationID}{ex.Message}", ex.StackTrace);
                     HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -90,7 +89,6 @@ namespace SMTP.Service.Controllers
             else
             {
                 logger.LogError($"corelation id : {corelationID} Validation error");
-                
                 return BadRequest(new APIResponse
                 {
                     CorelationID = corelationID,
